@@ -30,7 +30,7 @@ class Game extends Application {
         game.sound.pauseOnBlur = false;
         AudioManager.init(whiplash.Lib.phaserScene);
 
-        var e = Factory.createSprite('pacman');
+        var e = Factory.createLevel();
         engine.addEntity(e);
     }
 

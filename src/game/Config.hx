@@ -1,6 +1,6 @@
 package game;
 
 class Config {
-    static public var screenWidth:Int = 1024;
-    static public var screenHeight:Int = 600;
+    static public var screenWidth:Int = 256;
+    static public var screenHeight:Int = 256;
 }

@@ -6,7 +6,7 @@ import whiplash.math.*;
 
 class Factory {
     static public function preload(scene:phaser.Scene) {
-        // scene.load.spritesheet('pacman', '../data/spritesheets/pacman.png', { frameWidth: 16, frameHeight: 16});
+        scene.load.spritesheet('pacmansheet', '../data/textures/pacman.png', { frameWidth: 16, frameHeight: 16 });
     }
 
     static public function init(scene:phaser.Scene) {
@@ -29,4 +29,11 @@ class Factory {
         return e;
     }
 
+    static public function createCharacter() {
+        var e = new Entity();
+        e.add(new Sprite("pacmansheet", 5*32 + 25));
+        e.add(new Transform());
+        e.add(new game.logic.Object(10, 10));
+        return e;
+    }
 }

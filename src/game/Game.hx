@@ -30,7 +30,11 @@ class Game extends Application {
         game.sound.pauseOnBlur = false;
         AudioManager.init(whiplash.Lib.phaserScene);
         whiplash.Lib.phaserScene.cameras.main.setBackgroundColor('#000000');
+
+        engine.addSystem(new game.logic.ObjectSystem(), 1);
         var e = Factory.createLevel();
+        engine.addEntity(e);
+        var e = Factory.createCharacter();
         engine.addEntity(e);
     }
 

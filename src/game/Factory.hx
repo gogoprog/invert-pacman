@@ -26,6 +26,7 @@ class Factory {
         var e = new Entity();
         e.add(new TilemapLayer(tilemap, 0, tileset));
         e.add(new Transform());
+        e.name = "level";
         return e;
     }
 
@@ -33,6 +34,7 @@ class Factory {
         var e = new Entity();
         e.add(new Sprite("pacmansheet", 5*32 + 25));
         e.add(new Transform());
+        e.add(new game.logic.Character());
         e.add(new game.logic.Object(10, 10));
         return e;
     }

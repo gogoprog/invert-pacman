@@ -5,8 +5,8 @@ import ash.core.*;
 import whiplash.phaser.*;
 
 class MoveNode extends Node<MoveNode> {
-    public var transform:Transform;
-    public var shake:Move;
+    public var object:Object;
+    public var move:Move;
 }
 
 class MoveSystem extends ListIteratingSystem<MoveNode> {
@@ -26,6 +26,17 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
     }
 
     private function updateNode(node:MoveNode, dt:Float):Void {
+        var move = node.move;
+
+        move.time += dt;
+
+        var f = Math.min(move.time / move.duration, 1);
+
+        node.object.position = move.begin + (move.end - move.begin) * f;
+
+        if(f==1) {
+            node.entity.remove(Move);
+        }
     }
 
     private function onNodeAdded(node:MoveNode) {

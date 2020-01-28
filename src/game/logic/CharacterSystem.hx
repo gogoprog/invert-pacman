@@ -51,7 +51,7 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode> {
                 var tile = tilemapLayer.getTileAt(Std.int(newPos.x), Std.int(newPos.y));
 
                 if(tile == null) {
-                    node.entity.add(new Move(node.object.position, newPos, 0.5));
+                    node.entity.add(new Move(node.object.position, newPos, 0.1));
                 }
             }
         }

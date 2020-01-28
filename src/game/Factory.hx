@@ -36,6 +36,7 @@ class Factory {
         e.add(new Transform());
         e.add(new game.logic.Character());
         e.add(new game.logic.Object(10, 10));
+        e.add(new game.controller.Player());
         return e;
     }
 }

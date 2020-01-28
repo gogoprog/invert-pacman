@@ -35,10 +35,10 @@ class Game extends Application {
         engine.addEntity(e);
 
         e.get(game.logic.Object).position.set(10, 10);
-        e.get(game.logic.Character).requestedDirection = South;
 
-        engine.addSystem(new game.logic.CharacterSystem(), 1);
-        engine.addSystem(new game.logic.MoveSystem(), 2);
+        engine.addSystem(new game.controller.PlayerSystem(), 1);
+        engine.addSystem(new game.logic.CharacterSystem(), 2);
+        engine.addSystem(new game.logic.MoveSystem(), 3);
         engine.addSystem(new game.logic.ObjectSystem(), 10);
     }
 

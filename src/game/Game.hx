@@ -37,7 +37,11 @@ class Game extends Application {
         addGhost(6, 26);
         addGhost(24, 26);
 
+        var e = Factory.createPacman();
+        engine.addEntity(e);
+
         engine.addSystem(new game.controller.PlayerSystem(), 1);
+        engine.addSystem(new game.controller.BotSystem(), 1);
         engine.addSystem(new game.logic.CharacterSystem(), 2);
         engine.addSystem(new game.logic.MoveSystem(), 3);
         engine.addSystem(new game.logic.ObjectSystem(), 10);

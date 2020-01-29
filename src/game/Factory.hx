@@ -39,4 +39,14 @@ class Factory {
         e.add(new game.controller.Player());
         return e;
     }
+
+    static public function createPacman() {
+        var e = new Entity();
+        e.add(new Sprite("pacmansheet", 21));
+        e.add(new Transform());
+        e.add(new game.logic.Character());
+        e.add(new game.logic.Object(15, 15));
+        e.add(new game.controller.Bot());
+        return e;
+    }
 }

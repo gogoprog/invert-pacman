@@ -40,6 +40,7 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode> {
 
                 if(moveSystem.canMoveTo(pos)) {
                     node.entity.add(new Move(node.object.position, pos, 0.1));
+                    character.direction = character.requestedDirection;
                 }
             }
         }

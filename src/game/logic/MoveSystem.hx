@@ -51,6 +51,10 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
 
         if(tile == null) {
             return true;
+        } else {
+            if(tile.properties != null) {
+                return tile.properties.crossable;
+            }
         }
 
         return false;

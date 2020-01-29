@@ -30,7 +30,7 @@ class Factory {
         return e;
     }
 
-    static public function createCharacter() {
+    static public function createGhost() {
         var e = new Entity();
         e.add(new Sprite("pacmansheet", 5*32 + 25));
         e.add(new Transform());

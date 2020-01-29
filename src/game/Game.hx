@@ -31,15 +31,22 @@ class Game extends Application {
 
         var e = Factory.createLevel();
         engine.addEntity(e);
-        var e = Factory.createCharacter();
-        engine.addEntity(e);
 
-        e.get(game.logic.Object).position.set(10, 9);
+        addGhost(6, 5);
+        addGhost(24, 5);
+        addGhost(6, 26);
+        addGhost(24, 26);
 
         engine.addSystem(new game.controller.PlayerSystem(), 1);
         engine.addSystem(new game.logic.CharacterSystem(), 2);
         engine.addSystem(new game.logic.MoveSystem(), 3);
         engine.addSystem(new game.logic.ObjectSystem(), 10);
+    }
+
+    public function addGhost(x, y) {
+        var e = Factory.createGhost();
+        engine.addEntity(e);
+        e.get(game.logic.Object).position.set(x, y);
     }
 
     static function main():Void {

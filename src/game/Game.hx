@@ -34,7 +34,7 @@ class Game extends Application {
         var e = Factory.createCharacter();
         engine.addEntity(e);
 
-        e.get(game.logic.Object).position.set(10, 10);
+        e.get(game.logic.Object).position.set(10, 9);
 
         engine.addSystem(new game.controller.PlayerSystem(), 1);
         engine.addSystem(new game.logic.CharacterSystem(), 2);

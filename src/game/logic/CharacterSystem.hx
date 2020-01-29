@@ -35,23 +35,11 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode> {
 
         if(character.requestedDirection != null) {
             if(node.entity.get(Move) == null) {
-                var delta = new Vector2(0, 0);
+                var moveSystem = engine.getSystem(MoveSystem);
+                var pos = MoveSystem.getPosition(node.object.position, character.requestedDirection);
 
-                switch(character.requestedDirection) {
-                    case North: delta.y = -1;
-
-                    case East: delta.x = 1;
-
-                    case South: delta.y = 1;
-
-                    case West: delta.x = -1;
-                }
-
-                var newPos = node.object.position + delta;
-                var tile = tilemapLayer.getTileAt(Std.int(newPos.x), Std.int(newPos.y));
-
-                if(tile == null) {
-                    node.entity.add(new Move(node.object.position, newPos, 0.1));
+                if(moveSystem.canMoveTo(pos)) {
+                    node.entity.add(new Move(node.object.position, pos, 0.1));
                 }
             }
         }

@@ -58,6 +58,7 @@ class Factory {
         e.add(new game.logic.Object(15, 15));
         e.add(new game.logic.Picker());
         e.add(new game.controller.Bot());
+        e.add(new game.display.Rotate());
         return e;
     }
 }

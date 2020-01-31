@@ -31,6 +31,8 @@ class Game extends Application {
 
         var e = Factory.createLevel();
         engine.addEntity(e);
+        var e = Factory.createItems();
+        engine.addEntity(e);
 
         addGhost(6, 5);
         addGhost(24, 5);
@@ -45,6 +47,7 @@ class Game extends Application {
         engine.addSystem(new game.logic.CharacterSystem(), 2);
         engine.addSystem(new game.logic.MoveSystem(), 3);
         engine.addSystem(new game.logic.ObjectSystem(), 10);
+        engine.addSystem(new game.logic.PickerSystem(), 10);
     }
 
     public function addGhost(x, y) {

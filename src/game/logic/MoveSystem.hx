@@ -65,16 +65,22 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
 
         move.time += dt;
 
-        var f = Math.min(move.time / move.duration, 1);
+        var f = move.time / move.duration;
+
+        if(f >= 1) {
+            node.object.moveTimeOffset = move.time - move.duration;
+            f = 1;
+        }
 
         node.object.position = move.begin + (move.end - move.begin) * f;
 
-        if(f==1) {
+        if(f == 1) {
             node.entity.remove(Move);
         }
     }
 
     private function onNodeAdded(node:MoveNode) {
+        node.move.time = node.object.moveTimeOffset;
     }
 
     private function onNodeRemoved(node:MoveNode) {

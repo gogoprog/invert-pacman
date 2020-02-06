@@ -30,15 +30,16 @@ class PlayerSystem extends ListIteratingSystem<PlayerNode> {
     }
 
     private function updateNode(node:PlayerNode, dt:Float):Void {
-        var attemptedDirection:game.logic.Direction =null;
+        var attemptedDirection:game.logic.Direction = null;
+        var keys = whiplash.Input.keys;
 
-        if(whiplash.Input.keys["ArrowLeft"]) {
+        if(keys["ArrowLeft"] || keys["a"]) {
             attemptedDirection = West;
-        } else if(whiplash.Input.keys["ArrowRight"]) {
+        } else if(keys["ArrowRight"] || keys["d"]) {
             attemptedDirection = East;
-        } else if(whiplash.Input.keys["ArrowUp"]) {
+        } else if(keys["ArrowUp"] || keys["w"]) {
             attemptedDirection = North;
-        } else if(whiplash.Input.keys["ArrowDown"]) {
+        } else if(keys["ArrowDown"] || keys["s"]) {
             attemptedDirection = South;
         } else {
             // node.character.requestedDirection = null;

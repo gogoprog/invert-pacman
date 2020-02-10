@@ -15,6 +15,17 @@ class Factory {
     static public function init(scene:phaser.Scene) {
         tilemap = whiplash.Lib.phaserScene.add.tilemap('level');
         tileset = tilemap.addTilesetImage('pacman', 'pacman');
+        scene.anims.create({
+            key: 'pacman',
+            frames: [
+            { key:'pacmansheet', frame: 21 + 512/16},
+            { key:'pacmansheet', frame: 21 },
+            { key:'pacmansheet', frame: 22 },
+            { key:'pacmansheet', frame: 21 },
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
     }
 
     static public function createSprite(which) {
@@ -53,6 +64,7 @@ class Factory {
     static public function createPacman() {
         var e = new Entity();
         e.add(new Sprite("pacmansheet", 21));
+        e.get(Sprite).anims.play("pacman");
         e.add(new Transform());
         e.add(new game.logic.Character());
         e.add(new game.logic.Object(15, 15));

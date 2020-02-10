@@ -39,15 +39,29 @@ class BotSystem extends ListIteratingSystem<BotNode> {
             var cdir = (ncd != null ? Type.enumIndex(ncd)  : - 1);
             var moveSystem = engine.getSystem(MoveSystem);
             var pos:whiplash.math.Vector2;
+            var possibilities:Array<game.logic.Direction> = [];
 
-            do {
+            for(i in 0 ...4) {
+                var dir = Type.createEnumIndex(game.logic.Direction, i);
+                pos = MoveSystem.getPosition(node.object.position, dir);
+
+                if(moveSystem.canMoveTo(pos)) {
+                    possibilities.push(dir);
+                }
+            }
+
+            if(possibilities.length == 1) {
+                character.requestedDirection = possibilities[0];
+            } else {
                 do {
-                    dir = Std.random(4);
-                } while(dir == (cdir + 2) % 4);
+                    do {
+                        dir = Std.random(4);
+                    } while(dir == (cdir + 2) % 4);
 
-                character.requestedDirection = Type.createEnumIndex(game.logic.Direction, dir);
-                pos = MoveSystem.getPosition(node.object.position, character.requestedDirection);
-            } while(!moveSystem.canMoveTo(pos));
+                    character.requestedDirection = Type.createEnumIndex(game.logic.Direction, dir);
+                    pos = MoveSystem.getPosition(node.object.position, character.requestedDirection);
+                } while(!moveSystem.canMoveTo(pos));
+            }
         }
     }
 

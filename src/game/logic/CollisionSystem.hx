@@ -26,11 +26,19 @@ class CollisionSystem extends ListIteratingSystem<CollisionNode> {
     }
 
     public override function update(dt:Float) {
-        grid = new Map<Int, Map<Int, Bool>>();
         var collides = true;
 
         while(collides) {
+            grid = new Map<Int, Map<Int, Bool>>();
             collides = false;
+
+            for(node in nodeList) {
+                var move = node.entity.get(Move);
+
+                if(move == null) {
+                    setGrid(node.object.position, true);
+                }
+            }
 
             for(node in nodeList) {
                 var move = node.entity.get(Move);
@@ -40,11 +48,10 @@ class CollisionSystem extends ListIteratingSystem<CollisionNode> {
                         node.object.position = move.begin;
                         node.entity.remove(Move);
                         collides = true;
+                        continue;
                     } else {
                         setGrid(move.end, true);
                     }
-                } else {
-                    setGrid(node.object.position, true);
                 }
             }
         }

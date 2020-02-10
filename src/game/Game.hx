@@ -46,6 +46,7 @@ class Game extends Application {
         engine.addSystem(new game.controller.BotSystem(), 1);
         engine.addSystem(new game.logic.CharacterSystem(), 2);
         engine.addSystem(new game.logic.MoveSystem(), 3);
+        engine.addSystem(new game.logic.CollisionSystem(), 4);
         engine.addSystem(new game.logic.ObjectSystem(), 10);
         engine.addSystem(new game.logic.PickerSystem(), 10);
         engine.addSystem(new game.display.RotateSystem(), 11);

@@ -85,6 +85,7 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
 
     private function onNodeRemoved(node:MoveNode) {
     }
+
 }
 
 

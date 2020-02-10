@@ -84,6 +84,15 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
     }
 
     private function onNodeRemoved(node:MoveNode) {
+        var pos = node.object.position;
+
+        if(pos.y==15) {
+            if(pos.x == 5) {
+                pos.x = 25;
+            } else if(pos.x == 25) {
+                pos.x = 5;
+            }
+        }
     }
 
 }

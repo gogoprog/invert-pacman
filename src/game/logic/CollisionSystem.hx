@@ -3,17 +3,14 @@ package game.logic;
 import ash.tools.ListIteratingSystem;
 import ash.core.*;
 import whiplash.math.*;
+import game.logic.CharacterSystem;
 
-class CollisionNode extends Node<CollisionNode> {
-    public var object:Object;
-}
-
-class CollisionSystem extends ListIteratingSystem<CollisionNode> {
+class CollisionSystem extends ListIteratingSystem<CharacterNode> {
     private var engine:Engine;
     private var grid:Map<Int, Map<Int, Bool>>;
 
     public function new() {
-        super(CollisionNode, updateNode, onNodeAdded, onNodeRemoved);
+        super(CharacterNode, updateNode, onNodeAdded, onNodeRemoved);
     }
 
     public override function addToEngine(engine:Engine) {
@@ -57,13 +54,13 @@ class CollisionSystem extends ListIteratingSystem<CollisionNode> {
         }
     }
 
-    private function updateNode(node:CollisionNode, dt:Float):Void {
+    private function updateNode(node:CharacterNode, dt:Float):Void {
     }
 
-    private function onNodeAdded(node:CollisionNode) {
+    private function onNodeAdded(node:CharacterNode) {
     }
 
-    private function onNodeRemoved(node:CollisionNode) {
+    private function onNodeRemoved(node:CharacterNode) {
     }
 
     private function setGrid(pos:Vector2, value:Bool) {

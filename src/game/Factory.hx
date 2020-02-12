@@ -63,6 +63,7 @@ class Factory {
 
     static public function createPacman() {
         var e = new Entity();
+        e.name = "pacman";
         e.add(new Sprite("pacmansheet", 21));
         e.get(Sprite).anims.play("pacman");
         e.add(new Transform());

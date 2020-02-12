@@ -8,6 +8,9 @@ import game.logic.CharacterSystem;
 class CollisionSystem extends ListIteratingSystem<CharacterNode> {
     private var engine:Engine;
     private var grid:Map<Int, Map<Int, Bool>>;
+    private var pacman:Entity;
+    private var pacmanPos:Vector2;
+    private var pacmanPicker:game.logic.Picker;
 
     public function new() {
         super(CharacterNode, updateNode, onNodeAdded, onNodeRemoved);
@@ -16,6 +19,7 @@ class CollisionSystem extends ListIteratingSystem<CharacterNode> {
     public override function addToEngine(engine:Engine) {
         super.addToEngine(engine);
         this.engine = engine;
+        pacman = engine.getEntityByName("pacman");
     }
 
     public override function removeFromEngine(engine:Engine) {
@@ -52,9 +56,26 @@ class CollisionSystem extends ListIteratingSystem<CharacterNode> {
                 }
             }
         }
+
+        pacmanPicker = pacman.get(Picker);
+        pacmanPos = pacman.get(Object).position;
+        super.update(dt);
     }
 
     private function updateNode(node:CharacterNode, dt:Float):Void {
+        if(node.entity.name != "pacman") {
+            var pos = node.object.position;
+            var distance = pacmanPos.getDistance(pos);
+
+            if(distance < 1.42) {
+                if(pacmanPicker.chasing) {
+                    engine.removeEntity(node.entity);
+                } else {
+                    pacmanPos.set(15, 15);
+                    Game.instance.increaseScore(100);
+                }
+            }
+        }
     }
 
     private function onNodeAdded(node:CharacterNode) {

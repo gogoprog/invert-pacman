@@ -71,6 +71,10 @@ class CollisionSystem extends ListIteratingSystem<CharacterNode> {
                 if(pacmanPicker.chasing) {
                     engine.removeEntity(node.entity);
                 } else {
+                    if(pacman.get(Move) != null) {
+                        pacman.remove(Move);
+                    }
+
                     pacmanPos.set(15, 15);
                     Game.instance.increaseScore(100);
                 }

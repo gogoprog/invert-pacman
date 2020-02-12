@@ -45,7 +45,7 @@ class BotSystem extends ListIteratingSystem<BotNode> {
                 var dir = Type.createEnumIndex(game.logic.Direction, i);
                 pos = MoveSystem.getPosition(node.object.position, dir);
 
-                if(moveSystem.canMoveTo(pos)) {
+                if(moveSystem.canMoveTo(pos, node.entity)) {
                     possibilities.push(dir);
                 }
             }
@@ -60,7 +60,7 @@ class BotSystem extends ListIteratingSystem<BotNode> {
 
                     character.requestedDirection = Type.createEnumIndex(game.logic.Direction, dir);
                     pos = MoveSystem.getPosition(node.object.position, character.requestedDirection);
-                } while(!moveSystem.canMoveTo(pos));
+                } while(!moveSystem.canMoveTo(pos, node.entity));
             }
         }
     }

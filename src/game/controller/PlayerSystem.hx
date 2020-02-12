@@ -58,7 +58,7 @@ class PlayerSystem extends ListIteratingSystem<PlayerNode> {
             var moveSystem = engine.getSystem(game.logic.MoveSystem);
             var newPos = game.logic.MoveSystem.getPosition(pos, attemptedDirection);
 
-            if(moveSystem.canMoveTo(newPos)) {
+            if(moveSystem.canMoveTo(newPos, node.entity)) {
                 node.character.requestedDirection = attemptedDirection;
             }
         }

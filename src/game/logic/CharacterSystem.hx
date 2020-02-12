@@ -38,7 +38,7 @@ class CharacterSystem extends ListIteratingSystem<CharacterNode> {
                 var moveSystem = engine.getSystem(MoveSystem);
                 var pos = MoveSystem.getPosition(node.object.position, character.requestedDirection);
 
-                if(moveSystem.canMoveTo(pos)) {
+                if(moveSystem.canMoveTo(pos, node.entity)) {
                     node.entity.add(new Move(node.object.position, pos, 0.1));
                     character.direction = character.requestedDirection;
                 }

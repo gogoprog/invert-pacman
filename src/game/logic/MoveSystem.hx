@@ -46,14 +46,14 @@ class MoveSystem extends ListIteratingSystem<MoveNode> {
         return from + delta;
     }
 
-    public function canMoveTo(pos:Vector2) {
+    public function canMoveTo(pos:Vector2, entity:Entity) {
         var tile = tilemapLayer.getTileAt(Std.int(pos.x), Std.int(pos.y));
 
         if(tile == null) {
             return true;
         } else {
             if(tile.properties != null) {
-                return tile.properties.crossable;
+                return tile.properties.crossable && entity.get(Picker) != null;
             }
         }
 

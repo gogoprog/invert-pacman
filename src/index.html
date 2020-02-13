@@ -48,21 +48,29 @@
       height: 100%;
       top: 0;
       left: 0;
+      color:white;
+      font-size: 12px;
     }
 
     .root .score {
       position: absolute;
-      bottom:0;
-      font-size:12px;
-      color:white;
+      bottom: 0;
     }
 
+    .root .hud .title {
+      width:100%;
+      position: absolute;
+      top:0;
+      left:0;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
   <div class="root">
     <div class="hud">
+      <span class="title">Inverted Pac-man</span>
       <div class="score">
         Score: <span class="value">0</span>
       </div>

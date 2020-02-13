@@ -26,6 +26,42 @@ class Factory {
             frameRate: 10,
             repeat: -1
         });
+        scene.anims.create({
+            key: 'ghostRight',
+            frames: [
+            { key:'pacmansheet', frame: 5*32 + 21},
+            { key:'pacmansheet', frame: 5*32 + 22},
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'ghostLeft',
+            frames: [
+            { key:'pacmansheet', frame: 5*32 + 23},
+            { key:'pacmansheet', frame: 5*32 + 24},
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'ghostUp',
+            frames: [
+            { key:'pacmansheet', frame: 5*32 + 25},
+            { key:'pacmansheet', frame: 5*32 + 26},
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'ghostDown',
+            frames: [
+            { key:'pacmansheet', frame: 5*32 + 27},
+            { key:'pacmansheet', frame: 5*32 + 28},
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
     }
 
     static public function createSprite(which) {
@@ -54,10 +90,12 @@ class Factory {
     static public function createGhost() {
         var e = new Entity();
         e.add(new Sprite("pacmansheet", 5*32 + 25));
+        e.get(Sprite).anims.play("ghostRight");
         e.add(new Transform());
         e.add(new game.logic.Character());
         e.add(new game.logic.Object(10, 10));
         e.add(new game.controller.Player());
+        e.get(game.logic.Character).animations = ["ghostUp", "ghostRight", "ghostDown", "ghostLeft"];
         return e;
     }
 

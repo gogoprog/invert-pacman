@@ -41,8 +41,6 @@ class PlayerSystem extends ListIteratingSystem<PlayerNode> {
             attemptedDirection = North;
         } else if(keys["ArrowDown"] || keys["s"]) {
             attemptedDirection = South;
-        } else {
-            // node.character.requestedDirection = null;
         }
 
         if(attemptedDirection != null) {

@@ -72,6 +72,7 @@ class Factory {
         e.add(new game.logic.Picker());
         e.add(new game.controller.Bot());
         e.add(new game.display.Rotate());
+        e.get(game.logic.Character).speed = 15;
         return e;
     }
 }

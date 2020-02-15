@@ -8,6 +8,7 @@ class PickerNode extends Node<PickerNode> {
     public var transform:Transform;
     public var picker:Picker;
     public var object:Object;
+    public var character:Character;
 }
 
 class PickerSystem extends ListIteratingSystem<PickerNode> {
@@ -34,7 +35,27 @@ class PickerSystem extends ListIteratingSystem<PickerNode> {
             var tile = tilemapLayer.getTileAt(Std.int(pos.x), Std.int(pos.y));
 
             if(tile != null) {
+                if(tile.properties != null && tile.properties.mega) {
+                    Game.instance.increaseScore(-100);
+                    node.picker.chasing = true;
+                    node.picker.time = 10;
+                    node.character.speed = 15;
+                } else {
+                    Game.instance.increaseScore(-10);
+                }
+
                 tilemapLayer.removeTileAt(Std.int(pos.x), Std.int(pos.y));
+            }
+        }
+
+        var picker = node.picker;
+
+        if(picker.chasing) {
+            picker.time -= dt;
+
+            if(picker.time <= 0) {
+                node.picker.chasing = false;
+                node.character.speed = 10;
             }
         }
     }

@@ -85,7 +85,7 @@ class CollisionSystem extends ListIteratingSystem<CharacterNode> {
                     }
 
                     pacmanPos.set(15, 15);
-                    Game.instance.increaseScore(100);
+                    Game.instance.increaseScore(1000);
                 }
             }
         }

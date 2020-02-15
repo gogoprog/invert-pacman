@@ -5,8 +5,13 @@ retail:
 	rm -rf build
 	rm -rf retail
 	mkdir -p retail/build
+	mkdir -p retail/src
+	mkdir -p retail/deps/whiplash/deps
 	haxe build.hxml
-	rsync -avzm . ./retail -progress --exclude='**/phaser.js' --exclude='**/jquery-uipages/**' --exclude='**/babylon.max.js' --include='deps/**/*.css' --include='deps/**/*.js' --include='data/**' --include='src/*.css' --exclude='examples' --exclude='test' --include='src/*.html' --include='*/' --include='index.html' --exclude='*'
+	cp data -r retail/
+	cp src/index.html -r retail/src/
+	cp deps/whiplash/deps/phaser.min.js retail/deps/whiplash/deps/
+	cp deps/whiplash/deps/jquery-3.3.1.min.js retail/deps/whiplash/deps/
 	uglifyjs --compress --mangle -- build/generated.js > retail/build/generated.js
 
 zip: retail

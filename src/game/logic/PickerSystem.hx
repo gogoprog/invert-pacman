@@ -14,6 +14,7 @@ class PickerNode extends Node<PickerNode> {
 class PickerSystem extends ListIteratingSystem<PickerNode> {
     private var engine:Engine;
     private var tilemapLayer:TilemapLayer;
+    private var pickedTiles:Array<Dynamic>;
 
     public function new() {
         super(PickerNode, updateNode, onNodeAdded, onNodeRemoved);
@@ -23,6 +24,7 @@ class PickerSystem extends ListIteratingSystem<PickerNode> {
         super.addToEngine(engine);
         this.engine = engine;
         tilemapLayer = engine.getEntityByName("items").get(TilemapLayer);
+        pickedTiles = [];
     }
 
     public override function removeFromEngine(engine:Engine) {
@@ -45,6 +47,7 @@ class PickerSystem extends ListIteratingSystem<PickerNode> {
                 }
 
                 tile.visible = false;
+                pickedTiles.push(tile);
             }
         }
 

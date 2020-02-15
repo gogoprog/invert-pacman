@@ -34,17 +34,17 @@ class PickerSystem extends ListIteratingSystem<PickerNode> {
             var pos = node.object.position;
             var tile = tilemapLayer.getTileAt(Std.int(pos.x), Std.int(pos.y));
 
-            if(tile != null) {
+            if(tile != null && tile.visible) {
                 if(tile.properties != null && tile.properties.mega) {
                     Game.instance.increaseScore(-100);
                     node.picker.chasing = true;
-                    node.picker.time = 10;
+                    node.picker.time = 5;
                     node.character.speed = 15;
                 } else {
                     Game.instance.increaseScore(-10);
                 }
 
-                tilemapLayer.removeTileAt(Std.int(pos.x), Std.int(pos.y));
+                tile.visible = false;
             }
         }
 

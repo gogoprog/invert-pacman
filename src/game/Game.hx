@@ -32,6 +32,7 @@ class Game extends Application {
     override function create():Void {
         Factory.init(whiplash.Lib.phaserScene);
         AudioManager.init(whiplash.Lib.phaserScene);
+        whiplash.Input.preventDefaultKeys = true;
         whiplash.Lib.phaserScene.cameras.main.setBackgroundColor('#000000');
 
         var e = Factory.createLevel();

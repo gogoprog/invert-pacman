@@ -47,8 +47,8 @@ class Game extends Application {
         var e = Factory.createPacman();
         engine.addEntity(e);
 
-        engine.addSystem(new game.controller.PlayerSystem(), 1);
-        engine.addSystem(new game.controller.BotSystem(), 1);
+        var idleState = createState("idling");
+
         engine.addSystem(new game.logic.CharacterSystem(), 2);
         engine.addSystem(new game.logic.MoveSystem(), 3);
         engine.addSystem(new game.logic.CollisionSystem(), 4);
@@ -56,6 +56,16 @@ class Game extends Application {
         engine.addSystem(new game.logic.PickerSystem(), 10);
         engine.addSystem(new game.display.RotateSystem(), 11);
         engine.addSystem(new game.display.CharacterAnimationSystem(), 11);
+
+        var playingState = createState("playing");
+        playingState.addInstance(new game.controller.PlayerSystem());
+        playingState.addInstance(new game.controller.BotSystem());
+
+        changeState("idling");
+
+        delay(function() {
+            changeState("playing");
+        }, 2);
 
         reset();
     }
@@ -74,6 +84,11 @@ class Game extends Application {
     public function increaseScore(val:Int) {
         score += val;
         new js.jquery.JQuery(".score .value").text(score);
+    }
+
+    public function gameOver() {
+        new js.jquery.JQuery(".title").text("You've lost!");
+        changeState("idling");
     }
 
     static function main():Void {

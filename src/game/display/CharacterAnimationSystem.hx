@@ -12,6 +12,7 @@ class CharacterAnimationNode extends Node<CharacterAnimationNode> {
 
 class CharacterAnimationSystem extends ListIteratingSystem<CharacterAnimationNode> {
     private var engine:Engine;
+    private var picker:game.logic.Picker;
 
     public function new() {
         super(CharacterAnimationNode, updateNode, onNodeAdded, onNodeRemoved);
@@ -20,6 +21,7 @@ class CharacterAnimationSystem extends ListIteratingSystem<CharacterAnimationNod
     public override function addToEngine(engine:Engine) {
         super.addToEngine(engine);
         this.engine = engine;
+        picker = engine.getEntityByName("pacman").get(game.logic.Picker);
     }
 
     public override function removeFromEngine(engine:Engine) {
@@ -29,7 +31,13 @@ class CharacterAnimationSystem extends ListIteratingSystem<CharacterAnimationNod
     private function updateNode(node:CharacterAnimationNode, dt:Float):Void {
         var character = node.character;
 
-        if(character.animations != null) {
+        if(character.fearAnimation != null && picker.chasing) {
+            var anim = character.fearAnimation;
+
+            if(node.sprite.anims.getCurrentKey() != anim) {
+                node.sprite.anims.play(anim);
+            }
+        } else if(character.animations != null) {
             if(node.entity.get(game.logic.Move) == null) {
                 // node.sprite.anims.stop();
             } else {

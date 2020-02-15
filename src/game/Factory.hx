@@ -62,6 +62,15 @@ class Factory {
             frameRate: 10,
             repeat: -1
         });
+        scene.anims.create({
+            key: 'ghostFear',
+            frames: [
+            { key:'pacmansheet', frame: 9*32 + 21},
+            { key:'pacmansheet', frame: 9*32 + 22},
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
     }
 
     static public function createSprite(which) {
@@ -96,6 +105,7 @@ class Factory {
         e.add(new game.logic.Object(10, 10));
         e.add(new game.controller.Player());
         e.get(game.logic.Character).animations = ["ghostUp", "ghostRight", "ghostDown", "ghostLeft"];
+        e.get(game.logic.Character).fearAnimation = "ghostFear";
         return e;
     }
 

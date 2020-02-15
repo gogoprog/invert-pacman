@@ -5,6 +5,7 @@ class Character {
     public var direction:Direction = East;
     public var speed:Float = 10;
     public var animations:Array<String>;
+    public var fearAnimation:String;
 
     public function new() {
     }
